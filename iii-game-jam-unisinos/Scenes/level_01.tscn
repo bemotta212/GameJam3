@@ -1,5 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dyj7c6bvupsv5"]
+[gd_scene load_steps=13 format=3 uid="uid://dyj7c6bvupsv5"]
 
+[ext_resource type="Texture2D" uid="uid://br277b275rgjy" path="res://Assets/Textures/chao.jpg" id="1_1g27u"]
+[ext_resource type="Texture2D" uid="uid://dfal7gobpwutb" path="res://Assets/Textures/vidro.png" id="1_3dbj8"]
+[ext_resource type="Texture2D" uid="uid://c1ii64u74kaly" path="res://Assets/Textures/metal.jpg" id="1_c6m4u"]
 [ext_resource type="PackedScene" uid="uid://lekbgvvc58t6" path="res://Scenes/jogador.tscn" id="1_skhut"]
 [ext_resource type="PackedScene" uid="uid://chhe4nuh5xtwa" path="res://Scenes/porta.tscn" id="2_cp1n5"]
 [ext_resource type="Script" path="res://Scripts/ui.gd" id="3_1e0is"]
@@ -23,10 +26,31 @@ metadata/_edit_vertical_guides_ = [393.0, 761.0]
 
 [node name="Paredes" type="Node2D" parent="."]
 
+[node name="Vidro" type="Sprite2D" parent="Paredes"]
+z_index = 1
+position = Vector2(577.5, 318)
+scale = Vector2(0.122333, 0.176667)
+texture = ExtResource("1_3dbj8")
+
+[node name="Paredes" type="Sprite2D" parent="Paredes"]
+modulate = Color(0.60575, 0.436724, 0.284974, 1)
+position = Vector2(576, 286)
+scale = Vector2(0.63, 0.63)
+texture = ExtResource("1_c6m4u")
+
+[node name="Chao" type="Sprite2D" parent="Paredes"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(576.99, 317.956)
+rotation = 1.5708
+scale = Vector2(0.979265, 1.05147)
+texture = ExtResource("1_1g27u")
+
 [node name="Parede_esquerda" type="StaticBody2D" parent="Paredes"]
 collision_mask = 2
 
 [node name="ColorRect" type="ColorRect" parent="Paredes/Parede_esquerda"]
+visible = false
 offset_left = -124.0
 offset_top = -6.0
 offset_right = 393.0
@@ -42,6 +66,7 @@ shape = SubResource("RectangleShape2D_kwles")
 collision_mask = 2
 
 [node name="ColorRect" type="ColorRect" parent="Paredes/Parede_direita"]
+visible = false
 offset_left = 761.0
 offset_top = -5.0
 offset_right = 1180.0
@@ -57,6 +82,7 @@ shape = SubResource("RectangleShape2D_hutkw")
 collision_mask = 2
 
 [node name="ColorRect" type="ColorRect" parent="Paredes/Parede_baixo"]
+visible = false
 offset_left = 297.0
 offset_top = 582.0
 offset_right = 826.0
@@ -72,6 +98,7 @@ shape = SubResource("RectangleShape2D_d44l8")
 collision_mask = 2
 
 [node name="ColorRect" type="ColorRect" parent="Paredes/Parede_cima"]
+visible = false
 offset_left = 329.0
 offset_top = -6.0
 offset_right = 833.0
@@ -86,24 +113,24 @@ shape = SubResource("RectangleShape2D_k73t7")
 [node name="Portas" type="Node2D" parent="."]
 
 [node name="Cima_esquerda" parent="Portas" node_paths=PackedStringArray("respawn_point") instance=ExtResource("2_cp1n5")]
-position = Vector2(406, 65)
+position = Vector2(419, 79)
 respawn_point = NodePath("../../Respawn")
 color = Color(0, 0, 1, 1)
 
 [node name="Cima_direita" parent="Portas" node_paths=PackedStringArray("respawn_point") instance=ExtResource("2_cp1n5")]
-position = Vector2(749, 65)
+position = Vector2(735, 79)
 respawn_point = NodePath("../../Respawn")
 color = Color(1, 0, 0, 1)
 door_id = 2
 
 [node name="Baixo_esquerda" parent="Portas" node_paths=PackedStringArray("respawn_point") instance=ExtResource("2_cp1n5")]
-position = Vector2(405, 571)
+position = Vector2(419, 557)
 respawn_point = NodePath("../../Respawn")
 color = Color(0, 1, 0, 1)
 door_id = 4
 
 [node name="Baixo_direita" parent="Portas" node_paths=PackedStringArray("respawn_point") instance=ExtResource("2_cp1n5")]
-position = Vector2(747, 570)
+position = Vector2(735, 557)
 respawn_point = NodePath("../../Respawn")
 color = Color(1, 0.647059, 0, 1)
 door_id = 3
