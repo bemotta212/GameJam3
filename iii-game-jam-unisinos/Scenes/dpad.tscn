@@ -1,0 +1,89 @@
+[gd_scene load_steps=6 format=3 uid="uid://dp64ees47b2u1"]
+
+[ext_resource type="Script" path="res://Scripts/D-pad.gd" id="1_glou7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7hgjv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6s73u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w13st"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tjaxj"]
+
+[node name="D-pad" type="Node2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_glou7")
+
+[node name="Up" type="Area2D" parent="."]
+position = Vector2(0, -20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Up"]
+position = Vector2(0, -10)
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_7hgjv")
+
+[node name="Label" type="Label" parent="Up"]
+offset_left = -15.0
+offset_top = -25.0
+offset_right = 15.0
+offset_bottom = 5.0
+text = "^"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Down" type="Area2D" parent="."]
+position = Vector2(0, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Down"]
+position = Vector2(0, 10)
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_6s73u")
+
+[node name="Label" type="Label" parent="Down"]
+offset_left = -15.0
+offset_top = -5.0
+offset_right = 15.0
+offset_bottom = 25.0
+text = "v
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Left" type="Area2D" parent="."]
+position = Vector2(-20, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
+position = Vector2(-10, 0)
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_w13st")
+
+[node name="Label" type="Label" parent="Left"]
+offset_left = -25.0
+offset_top = -15.0
+offset_right = 5.0
+offset_bottom = 15.0
+text = "<"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Right" type="Area2D" parent="."]
+position = Vector2(20, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
+position = Vector2(10, 0)
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_tjaxj")
+
+[node name="Label" type="Label" parent="Right"]
+offset_left = -5.0
+offset_top = -15.0
+offset_right = 25.0
+offset_bottom = 15.0
+text = ">"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="input_event" from="Up" to="." method="_on_button_up_input_event"]
+[connection signal="input_event" from="Down" to="." method="_on_button_down_input_event"]
+[connection signal="input_event" from="Left" to="." method="_on_button_left_input_event"]
+[connection signal="input_event" from="Right" to="." method="_on_button_right_input_event"]

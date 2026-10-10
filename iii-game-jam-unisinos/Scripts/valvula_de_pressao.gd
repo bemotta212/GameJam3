@@ -28,7 +28,7 @@ func _input(event: InputEvent) -> void:
 	if is_dragging == true and mouse_click == true:
 		valve_sprite.look_at(get_global_mouse_position())
 		#Quanto que o jogador rodou a válvula
-		var rotation_change = valve_sprite.global_rotation_degrees - last_rotation_degrees
+		var rotation_change = (valve_sprite.global_rotation_degrees - last_rotation_degrees) / 2
 		#Impede o jogador de rodar a válvula ao contrário
 		if rotation_change < 0:
 			rotation_change = 0
