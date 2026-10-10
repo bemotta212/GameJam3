@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dyj7c6bvupsv5"]
+[gd_scene load_steps=9 format=3 uid="uid://dyj7c6bvupsv5"]
 
 [ext_resource type="PackedScene" uid="uid://lekbgvvc58t6" path="res://Scenes/jogador.tscn" id="1_skhut"]
 [ext_resource type="PackedScene" uid="uid://chhe4nuh5xtwa" path="res://Scenes/porta.tscn" id="2_cp1n5"]
 [ext_resource type="Script" path="res://Scripts/ui.gd" id="3_1e0is"]
+[ext_resource type="PackedScene" uid="uid://b5aruyah8xm4j" path="res://Scenes/valvula_container.tscn" id="4_ee6e2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kwles"]
 size = Vector2(91, 616)
@@ -25,7 +26,7 @@ metadata/_edit_vertical_guides_ = [393.0, 761.0]
 collision_mask = 2
 
 [node name="ColorRect" type="ColorRect" parent="Paredes/Parede_esquerda"]
-offset_left = -4.0
+offset_left = 246.0
 offset_top = -6.0
 offset_right = 393.0
 offset_bottom = 669.0
@@ -106,6 +107,9 @@ door_id = 3
 position = Vector2(577, 322)
 SPEED = 300.0
 
+[node name="Respawn" type="Marker2D" parent="."]
+position = Vector2(577, 322)
+
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("3_1e0is")
 
@@ -152,8 +156,8 @@ wait_time = 20.0
 one_shot = true
 autostart = true
 
-[node name="Respawn" type="Marker2D" parent="."]
-position = Vector2(577, 322)
+[node name="Valvula_container" parent="." instance=ExtResource("4_ee6e2")]
+position = Vector2(136, 529)
 
 [connection signal="game_won" from="Jogador" to="UI" method="on_game_won"]
 [connection signal="game_lost" from="UI" to="Jogador" method="on_game_lost"]

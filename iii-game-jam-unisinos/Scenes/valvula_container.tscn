@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5aruyah8xm4j"]
+
+[ext_resource type="Script" path="res://Scripts/valvula_de_pressao.gd" id="1_plvoq"]
+[ext_resource type="Texture2D" uid="uid://cyvpm1v4m5dgu" path="res://Assets/Textures/valvula.png" id="2_tr1bv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_21wfx"]
+radius = 50.0
+
+[node name="Valvula_container" type="Node2D"]
+script = ExtResource("1_plvoq")
+
+[node name="Valvula_de_pressao" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Valvula_de_pressao"]
+position = Vector2(5.96046e-08, 0)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_tr1bv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Valvula_de_pressao"]
+shape = SubResource("CircleShape2D_21wfx")
+
+[connection signal="input_event" from="Valvula_de_pressao" to="." method="_on_input_event"]
