@@ -11,11 +11,11 @@ var delivers_made : int = 0
 @export var min_speed : float = 45
 @export var SPEED : float = 150.0
 
-
 var game_lost: bool = false
+var game_won: bool = false
 signal delivered(delivers_made : int)
 signal speed_changed(current_speed : float, max_speed : float, min_speed : float)
-signal game_won
+signal level_completed
 
 
 func _ready() -> void:
@@ -27,6 +27,8 @@ func _physics_process(delta: float) -> void:
 		get_tree().reload_current_scene()
 	
 	if game_lost: 
+		return
+	if game_won:
 		return
 	#Move para os lados
 	var direction_x := Input.get_axis("Move_left", "Move_right")
@@ -73,7 +75,8 @@ func respawn(respawn_point: Marker2D):
 	delivers_made += 1
 	delivered.emit(delivers_made)
 	if delivers_made >= delivers_needed:
-		emit_signal("game_won")
+		game_won = true
+		emit_signal("level_completed")
 		return
 	position = respawn_point.position
 	change_objective()
@@ -84,7 +87,7 @@ func on_game_lost() -> void:
 
 
 func on_valve_rotated(rotation_degrees : float):
-	SPEED += rotation_degrees / 5
+	SPEED += rotation_degrees / 10
 	if SPEED > max_speed:
 		SPEED = max_speed
 	speed_changed.emit(SPEED, max_speed, min_speed)

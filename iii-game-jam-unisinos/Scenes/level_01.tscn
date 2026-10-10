@@ -138,7 +138,6 @@ door_id = 3
 [node name="Jogador" parent="." instance=ExtResource("1_skhut")]
 position = Vector2(577, 322)
 max_speed = 200.0
-SPEED = 125.0
 
 [node name="Respawn" type="Marker2D" parent="."]
 position = Vector2(577, 322)
@@ -154,6 +153,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Timer_bar" type="ProgressBar" parent="UI/Control"]
 layout_mode = 1
@@ -167,6 +167,7 @@ offset_bottom = 37.0
 grow_horizontal = 2
 max_value = 60.0
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="Message" type="Label" parent="UI/Control"]
 layout_mode = 1
@@ -183,6 +184,7 @@ grow_horizontal = 2
 grow_vertical = 2
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Delivers_made" type="Label" parent="UI/Control"]
 layout_mode = 0
@@ -191,6 +193,7 @@ offset_bottom = 23.0
 text = "0 / 20"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Timer" type="Timer" parent="UI"]
 wait_time = 60.0
@@ -204,7 +207,7 @@ position = Vector2(136, 529)
 position = Vector2(1001, 534)
 
 [connection signal="delivered" from="Jogador" to="UI" method="_on_deviver_made"]
-[connection signal="game_won" from="Jogador" to="UI" method="on_game_won"]
+[connection signal="level_completed" from="Jogador" to="UI" method="on_level_completed"]
 [connection signal="speed_changed" from="Jogador" to="Valvula_container" method="on_player_speed_change"]
 [connection signal="game_lost" from="UI" to="Jogador" method="on_game_lost"]
 [connection signal="timeout" from="UI/Timer" to="UI" method="_on_timer_timeout"]

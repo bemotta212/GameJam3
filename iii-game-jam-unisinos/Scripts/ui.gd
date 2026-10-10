@@ -5,11 +5,15 @@ extends CanvasLayer
 @onready var message: Label = $Control/Message
 @onready var delivers_made : Label = $Control/Delivers_made
 
+var level_completed: bool = false
 signal game_lost
 
 
 func _physics_process(delta: float) -> void:
-	timer_bar.value = timer.time_left
+	if !level_completed:
+		timer_bar.value = timer.time_left
+	else:
+		timer_bar.value += 1
 
 
 func _on_timer_timeout() -> void:
@@ -17,10 +21,10 @@ func _on_timer_timeout() -> void:
 	game_lost.emit()
 
 
-func on_game_won() -> void:
+func on_level_completed() -> void:
 	message.text = "Você Venceu!!!"
+	level_completed = true
 	timer.stop()
-	timer_bar.value = timer_bar.max_value
 
 
 func _on_deviver_made(player_delivers_made : int) -> void:
