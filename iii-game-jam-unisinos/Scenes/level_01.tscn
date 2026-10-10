@@ -1,0 +1,145 @@
+[gd_scene load_steps=10 format=3 uid="uid://dyj7c6bvupsv5"]
+
+[ext_resource type="PackedScene" uid="uid://lekbgvvc58t6" path="res://Scenes/jogador.tscn" id="1_skhut"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kwles"]
+size = Vector2(91, 616)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hutkw"]
+size = Vector2(100, 676)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d44l8"]
+size = Vector2(547, 75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k73t7"]
+size = Vector2(464, 54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jrm6f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_byueg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xohae"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r8qs7"]
+
+[node name="Level_01" type="Node2D"]
+
+[node name="Paredes" type="Node2D" parent="."]
+
+[node name="Parede_esquerda" type="StaticBody2D" parent="Paredes"]
+collision_mask = 2
+
+[node name="ColorRect" type="ColorRect" parent="Paredes/Parede_esquerda"]
+offset_left = 303.0
+offset_top = -5.0
+offset_right = 389.0
+offset_bottom = 670.0
+color = Color(0.55046, 0.464676, 0.119736, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/Parede_esquerda"]
+position = Vector2(345.5, 318)
+shape = SubResource("RectangleShape2D_kwles")
+
+[node name="Parede_direita" type="StaticBody2D" parent="Paredes"]
+collision_mask = 2
+
+[node name="ColorRect" type="ColorRect" parent="Paredes/Parede_direita"]
+offset_left = 739.0
+offset_top = -4.0
+offset_right = 847.0
+offset_bottom = 697.0
+color = Color(0.55046, 0.464676, 0.119736, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/Parede_direita"]
+position = Vector2(788, 331)
+shape = SubResource("RectangleShape2D_hutkw")
+
+[node name="Parede_baixo" type="StaticBody2D" parent="Paredes"]
+collision_mask = 2
+
+[node name="ColorRect" type="ColorRect" parent="Paredes/Parede_baixo"]
+offset_left = 297.0
+offset_top = 582.0
+offset_right = 826.0
+offset_bottom = 665.0
+color = Color(0.55046, 0.464676, 0.119736, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/Parede_baixo"]
+position = Vector2(556.5, 620.5)
+shape = SubResource("RectangleShape2D_d44l8")
+
+[node name="Parede_cima" type="StaticBody2D" parent="Paredes"]
+collision_mask = 2
+
+[node name="ColorRect" type="ColorRect" parent="Paredes/Parede_cima"]
+offset_left = 329.0
+offset_top = -6.0
+offset_right = 833.0
+offset_bottom = 53.0
+color = Color(0.55046, 0.464676, 0.119736, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/Parede_cima"]
+position = Vector2(559, 26)
+shape = SubResource("RectangleShape2D_k73t7")
+
+[node name="Jogador" parent="." instance=ExtResource("1_skhut")]
+position = Vector2(557, 333)
+SPEED = null
+
+[node name="Portas" type="Node2D" parent="."]
+
+[node name="Cima_direita" type="Area2D" parent="Portas"]
+position = Vector2(723, 67)
+collision_layer = 4
+
+[node name="ColorRect" type="ColorRect" parent="Portas/Cima_direita"]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+color = Color(1, 0, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Portas/Cima_direita"]
+shape = SubResource("RectangleShape2D_jrm6f")
+
+[node name="Cima_esquerda" type="Area2D" parent="Portas"]
+position = Vector2(405, 66)
+collision_layer = 4
+
+[node name="ColorRect" type="ColorRect" parent="Portas/Cima_esquerda"]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+color = Color(0, 1, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Portas/Cima_esquerda"]
+shape = SubResource("RectangleShape2D_byueg")
+
+[node name="Baixo_direita" type="Area2D" parent="Portas"]
+position = Vector2(725, 569)
+collision_layer = 4
+
+[node name="ColorRect" type="ColorRect" parent="Portas/Baixo_direita"]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+color = Color(0, 0, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Portas/Baixo_direita"]
+shape = SubResource("RectangleShape2D_xohae")
+
+[node name="Baixo_esquerda" type="Area2D" parent="Portas"]
+position = Vector2(403, 569)
+collision_layer = 4
+
+[node name="ColorRect" type="ColorRect" parent="Portas/Baixo_esquerda"]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+color = Color(1, 1, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Portas/Baixo_esquerda"]
+shape = SubResource("RectangleShape2D_r8qs7")
