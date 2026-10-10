@@ -20,3 +20,6 @@ func _physics_process(delta: float) -> void:
 		velocity.y = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+
+func respawn(respawn_point: Marker2D):
+	position = respawn_point.position

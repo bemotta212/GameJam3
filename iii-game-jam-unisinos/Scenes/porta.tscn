@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://chhe4nuh5xtwa"]
+
+[ext_resource type="Script" path="res://Scripts/porta.gd" id="1_87p42"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jrm6f"]
+
+[node name="Porta" type="Area2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_87p42")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jrm6f")
+
+[connection signal="body_entered" from="." to="." method="on_player_entered"]

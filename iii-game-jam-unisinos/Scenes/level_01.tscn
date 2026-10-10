@@ -1,7 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://dyj7c6bvupsv5"]
+[gd_scene load_steps=7 format=3 uid="uid://dyj7c6bvupsv5"]
 
 [ext_resource type="PackedScene" uid="uid://lekbgvvc58t6" path="res://Scenes/jogador.tscn" id="1_skhut"]
-[ext_resource type="Script" path="res://Scripts/porta.gd" id="2_eielk"]
+[ext_resource type="PackedScene" uid="uid://chhe4nuh5xtwa" path="res://Scenes/porta.tscn" id="2_cp1n5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kwles"]
 size = Vector2(91, 616)
@@ -15,14 +15,6 @@ size = Vector2(547, 75)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k73t7"]
 size = Vector2(464, 54)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jrm6f"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_byueg"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xohae"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_r8qs7"]
-
 [node name="Level_01" type="Node2D"]
 
 [node name="Paredes" type="Node2D" parent="."]
@@ -33,7 +25,7 @@ collision_mask = 2
 [node name="ColorRect" type="ColorRect" parent="Paredes/Parede_esquerda"]
 offset_left = 303.0
 offset_top = -5.0
-offset_right = 389.0
+offset_right = 391.0
 offset_bottom = 670.0
 color = Color(0.55046, 0.464676, 0.119736, 1)
 
@@ -88,69 +80,25 @@ position = Vector2(557, 333)
 
 [node name="Portas" type="Node2D" parent="."]
 
-[node name="Cima_direita" type="Area2D" parent="Portas" node_paths=PackedStringArray("respawn_point")]
-position = Vector2(723, 67)
-collision_layer = 4
-script = ExtResource("2_eielk")
+[node name="Cima_esquerda" parent="Portas" node_paths=PackedStringArray("respawn_point") instance=ExtResource("2_cp1n5")]
+position = Vector2(404, 65)
 respawn_point = NodePath("../../Respawn")
-
-[node name="ColorRect" type="ColorRect" parent="Portas/Cima_direita"]
-offset_left = -10.0
-offset_top = -10.0
-offset_right = 10.0
-offset_bottom = 10.0
-color = Color(1, 0, 0, 1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Portas/Cima_direita"]
-shape = SubResource("RectangleShape2D_jrm6f")
-
-[node name="Cima_esquerda" type="Area2D" parent="Portas" node_paths=PackedStringArray("respawn_point")]
-position = Vector2(405, 66)
-collision_layer = 4
-script = ExtResource("2_eielk")
-respawn_point = NodePath("../../Respawn")
-
-[node name="ColorRect" type="ColorRect" parent="Portas/Cima_esquerda"]
-offset_left = -10.0
-offset_top = -10.0
-offset_right = 10.0
-offset_bottom = 10.0
-color = Color(0, 1, 0, 1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Portas/Cima_esquerda"]
-shape = SubResource("RectangleShape2D_byueg")
-
-[node name="Baixo_direita" type="Area2D" parent="Portas" node_paths=PackedStringArray("respawn_point")]
-position = Vector2(725, 569)
-collision_layer = 4
-script = ExtResource("2_eielk")
-respawn_point = NodePath("../../Respawn")
-
-[node name="ColorRect" type="ColorRect" parent="Portas/Baixo_direita"]
-offset_left = -10.0
-offset_top = -10.0
-offset_right = 10.0
-offset_bottom = 10.0
 color = Color(0, 0, 1, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Portas/Baixo_direita"]
-shape = SubResource("RectangleShape2D_xohae")
-
-[node name="Baixo_esquerda" type="Area2D" parent="Portas" node_paths=PackedStringArray("respawn_point")]
-position = Vector2(403, 569)
-collision_layer = 4
-script = ExtResource("2_eielk")
+[node name="Cima_direita" parent="Portas" node_paths=PackedStringArray("respawn_point") instance=ExtResource("2_cp1n5")]
+position = Vector2(724, 63)
 respawn_point = NodePath("../../Respawn")
+color = Color(1, 0, 0, 1)
 
-[node name="ColorRect" type="ColorRect" parent="Portas/Baixo_esquerda"]
-offset_left = -10.0
-offset_top = -10.0
-offset_right = 10.0
-offset_bottom = 10.0
+[node name="Baixo_esquerda" parent="Portas" node_paths=PackedStringArray("respawn_point") instance=ExtResource("2_cp1n5")]
+position = Vector2(406, 568)
+respawn_point = NodePath("../../Respawn")
+color = Color(0, 1, 0, 1)
+
+[node name="Baixo_direita" parent="Portas" node_paths=PackedStringArray("respawn_point") instance=ExtResource("2_cp1n5")]
+position = Vector2(723, 568)
+respawn_point = NodePath("../../Respawn")
 color = Color(1, 1, 0, 1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Portas/Baixo_esquerda"]
-shape = SubResource("RectangleShape2D_r8qs7")
 
 [node name="Respawn" type="Marker2D" parent="."]
 position = Vector2(557, 333)
