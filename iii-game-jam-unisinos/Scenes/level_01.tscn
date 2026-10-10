@@ -77,6 +77,7 @@ shape = SubResource("RectangleShape2D_k73t7")
 
 [node name="Jogador" parent="." instance=ExtResource("1_skhut")]
 position = Vector2(557, 333)
+SPEED = 300.0
 
 [node name="Portas" type="Node2D" parent="."]
 
@@ -89,16 +90,19 @@ color = Color(0, 0, 1, 1)
 position = Vector2(724, 63)
 respawn_point = NodePath("../../Respawn")
 color = Color(1, 0, 0, 1)
+door_id = 2
 
 [node name="Baixo_esquerda" parent="Portas" node_paths=PackedStringArray("respawn_point") instance=ExtResource("2_cp1n5")]
 position = Vector2(406, 568)
 respawn_point = NodePath("../../Respawn")
 color = Color(0, 1, 0, 1)
+door_id = 4
 
 [node name="Baixo_direita" parent="Portas" node_paths=PackedStringArray("respawn_point") instance=ExtResource("2_cp1n5")]
 position = Vector2(723, 568)
 respawn_point = NodePath("../../Respawn")
 color = Color(1, 1, 0, 1)
+door_id = 3
 
 [node name="Respawn" type="Marker2D" parent="."]
 position = Vector2(557, 333)
