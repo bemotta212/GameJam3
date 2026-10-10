@@ -1,13 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://dyj7c6bvupsv5"]
+[gd_scene load_steps=8 format=3 uid="uid://dyj7c6bvupsv5"]
 
 [ext_resource type="PackedScene" uid="uid://lekbgvvc58t6" path="res://Scenes/jogador.tscn" id="1_skhut"]
 [ext_resource type="PackedScene" uid="uid://chhe4nuh5xtwa" path="res://Scenes/porta.tscn" id="2_cp1n5"]
+[ext_resource type="Script" path="res://Scripts/ui.gd" id="3_1e0is"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kwles"]
 size = Vector2(91, 616)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hutkw"]
-size = Vector2(100, 676)
+size = Vector2(99, 676)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d44l8"]
 size = Vector2(547, 75)
@@ -16,6 +17,7 @@ size = Vector2(547, 75)
 size = Vector2(464, 54)
 
 [node name="Level_01" type="Node2D"]
+metadata/_edit_vertical_guides_ = [393.0, 761.0]
 
 [node name="Paredes" type="Node2D" parent="."]
 
@@ -23,28 +25,28 @@ size = Vector2(464, 54)
 collision_mask = 2
 
 [node name="ColorRect" type="ColorRect" parent="Paredes/Parede_esquerda"]
-offset_left = 303.0
-offset_top = -5.0
-offset_right = 391.0
-offset_bottom = 670.0
+offset_left = -4.0
+offset_top = -6.0
+offset_right = 393.0
+offset_bottom = 669.0
 color = Color(0.55046, 0.464676, 0.119736, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/Parede_esquerda"]
-position = Vector2(345.5, 318)
+position = Vector2(347.5, 317)
 shape = SubResource("RectangleShape2D_kwles")
 
 [node name="Parede_direita" type="StaticBody2D" parent="Paredes"]
 collision_mask = 2
 
 [node name="ColorRect" type="ColorRect" parent="Paredes/Parede_direita"]
-offset_left = 739.0
-offset_top = -4.0
-offset_right = 847.0
-offset_bottom = 697.0
+offset_left = 761.0
+offset_top = -5.0
+offset_right = 1168.0
+offset_bottom = 696.0
 color = Color(0.55046, 0.464676, 0.119736, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/Parede_direita"]
-position = Vector2(788, 331)
+position = Vector2(810.5, 330)
 shape = SubResource("RectangleShape2D_hutkw")
 
 [node name="Parede_baixo" type="StaticBody2D" parent="Paredes"]
@@ -75,34 +77,84 @@ color = Color(0.55046, 0.464676, 0.119736, 1)
 position = Vector2(559, 26)
 shape = SubResource("RectangleShape2D_k73t7")
 
-[node name="Jogador" parent="." instance=ExtResource("1_skhut")]
-position = Vector2(557, 333)
-SPEED = 300.0
-
 [node name="Portas" type="Node2D" parent="."]
 
 [node name="Cima_esquerda" parent="Portas" node_paths=PackedStringArray("respawn_point") instance=ExtResource("2_cp1n5")]
-position = Vector2(404, 65)
+position = Vector2(406, 65)
 respawn_point = NodePath("../../Respawn")
 color = Color(0, 0, 1, 1)
 
 [node name="Cima_direita" parent="Portas" node_paths=PackedStringArray("respawn_point") instance=ExtResource("2_cp1n5")]
-position = Vector2(724, 63)
+position = Vector2(749, 65)
 respawn_point = NodePath("../../Respawn")
 color = Color(1, 0, 0, 1)
 door_id = 2
 
 [node name="Baixo_esquerda" parent="Portas" node_paths=PackedStringArray("respawn_point") instance=ExtResource("2_cp1n5")]
-position = Vector2(406, 568)
+position = Vector2(405, 571)
 respawn_point = NodePath("../../Respawn")
 color = Color(0, 1, 0, 1)
 door_id = 4
 
 [node name="Baixo_direita" parent="Portas" node_paths=PackedStringArray("respawn_point") instance=ExtResource("2_cp1n5")]
-position = Vector2(723, 568)
+position = Vector2(747, 570)
 respawn_point = NodePath("../../Respawn")
-color = Color(1, 1, 0, 1)
+color = Color(1, 0.647059, 0, 1)
 door_id = 3
 
+[node name="Jogador" parent="." instance=ExtResource("1_skhut")]
+position = Vector2(577, 322)
+SPEED = 300.0
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("3_1e0is")
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Timer_bar" type="ProgressBar" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -183.0
+offset_top = 10.0
+offset_right = 184.0
+offset_bottom = 37.0
+grow_horizontal = 2
+max_value = 20.0
+show_percentage = false
+
+[node name="Message" type="Label" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="UI"]
+wait_time = 20.0
+one_shot = true
+autostart = true
+
 [node name="Respawn" type="Marker2D" parent="."]
-position = Vector2(557, 333)
+position = Vector2(577, 322)
+
+[connection signal="game_won" from="Jogador" to="UI" method="on_game_won"]
+[connection signal="game_lost" from="UI" to="Jogador" method="on_game_lost"]
+[connection signal="timeout" from="UI/Timer" to="UI" method="_on_timer_timeout"]

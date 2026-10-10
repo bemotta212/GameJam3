@@ -13,6 +13,6 @@ func _ready() -> void:
 
 #Caso o jogador colida com a porta, teleporta ele pro respawn point
 func on_player_entered(body: CharacterBody2D):
-	if respawn_point and body.has_method("respawn") and body.has_method("get_objective"):
-		if body.get_objective() == door_id:
+	if respawn_point and body.has_method("respawn") and body.has_method("get_current_door"):
+		if body.get_current_door() == door_id:
 			body.respawn(respawn_point)

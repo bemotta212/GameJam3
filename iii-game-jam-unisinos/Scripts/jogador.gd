@@ -4,7 +4,12 @@ extends CharacterBody2D
 @export var SPEED = 150.0
 
 @onready var sprite : Sprite2D = $Sprite2D
-var current_objective : int
+var current_door : int
+@export var delivers : int = 20
+var delivers_made : int = 0
+
+var game_lost: bool = false
+signal game_won
 
 
 func _ready() -> void:
@@ -12,6 +17,11 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("Restart") and game_lost:
+		get_tree().reload_current_scene()
+	
+	if game_lost: 
+		return
 	#Move para os lados
 	var direction_x := Input.get_axis("Move_left", "Move_right")
 	if direction_x:
@@ -29,22 +39,21 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func get_objective() -> int:
-	return current_objective
+func get_current_door() -> int:
+	return current_door
 
 
 #Resorteia o objetivo atual quando chamado
 func change_objective():
-	current_objective = randi_range(1, 4)
-	print("Valor sorteado: ", current_objective)
+	current_door = randi_range(1, 4)
 	var new_color : Color
-	if current_objective == 1:
+	if current_door == 1:
 		new_color = Color.BLUE
-	elif current_objective == 2:
+	elif current_door == 2:
 		new_color = Color.RED
-	elif current_objective == 3:
-		new_color = Color.YELLOW
-	elif current_objective == 4:
+	elif current_door == 3:
+		new_color = Color.ORANGE
+	elif current_door == 4:
 		new_color = Color.GREEN
 	change_color(new_color)
 
@@ -55,5 +64,13 @@ func change_color(new_color : Color):
 
 #Teleporta o jogador até o ponto de respawn e muda o objetivo
 func respawn(respawn_point: Marker2D):
+	delivers_made += 1
+	if delivers_made >= delivers:
+		emit_signal("game_won")
+		return
 	position = respawn_point.position
 	change_objective()
+
+
+func on_game_lost() -> void:
+	game_lost = true
