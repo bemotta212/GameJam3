@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dyj7c6bvupsv5"]
+[gd_scene load_steps=11 format=3 uid="uid://dyj7c6bvupsv5"]
 
 [ext_resource type="PackedScene" uid="uid://lekbgvvc58t6" path="res://Scenes/jogador.tscn" id="1_skhut"]
+[ext_resource type="Script" path="res://Scripts/porta.gd" id="2_eielk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kwles"]
 size = Vector2(91, 616)
@@ -84,13 +85,14 @@ shape = SubResource("RectangleShape2D_k73t7")
 
 [node name="Jogador" parent="." instance=ExtResource("1_skhut")]
 position = Vector2(557, 333)
-SPEED = null
 
 [node name="Portas" type="Node2D" parent="."]
 
-[node name="Cima_direita" type="Area2D" parent="Portas"]
+[node name="Cima_direita" type="Area2D" parent="Portas" node_paths=PackedStringArray("respawn_point")]
 position = Vector2(723, 67)
 collision_layer = 4
+script = ExtResource("2_eielk")
+respawn_point = NodePath("../../Respawn")
 
 [node name="ColorRect" type="ColorRect" parent="Portas/Cima_direita"]
 offset_left = -10.0
@@ -102,9 +104,11 @@ color = Color(1, 0, 0, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Portas/Cima_direita"]
 shape = SubResource("RectangleShape2D_jrm6f")
 
-[node name="Cima_esquerda" type="Area2D" parent="Portas"]
+[node name="Cima_esquerda" type="Area2D" parent="Portas" node_paths=PackedStringArray("respawn_point")]
 position = Vector2(405, 66)
 collision_layer = 4
+script = ExtResource("2_eielk")
+respawn_point = NodePath("../../Respawn")
 
 [node name="ColorRect" type="ColorRect" parent="Portas/Cima_esquerda"]
 offset_left = -10.0
@@ -116,9 +120,11 @@ color = Color(0, 1, 0, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Portas/Cima_esquerda"]
 shape = SubResource("RectangleShape2D_byueg")
 
-[node name="Baixo_direita" type="Area2D" parent="Portas"]
+[node name="Baixo_direita" type="Area2D" parent="Portas" node_paths=PackedStringArray("respawn_point")]
 position = Vector2(725, 569)
 collision_layer = 4
+script = ExtResource("2_eielk")
+respawn_point = NodePath("../../Respawn")
 
 [node name="ColorRect" type="ColorRect" parent="Portas/Baixo_direita"]
 offset_left = -10.0
@@ -130,9 +136,11 @@ color = Color(0, 0, 1, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Portas/Baixo_direita"]
 shape = SubResource("RectangleShape2D_xohae")
 
-[node name="Baixo_esquerda" type="Area2D" parent="Portas"]
+[node name="Baixo_esquerda" type="Area2D" parent="Portas" node_paths=PackedStringArray("respawn_point")]
 position = Vector2(403, 569)
 collision_layer = 4
+script = ExtResource("2_eielk")
+respawn_point = NodePath("../../Respawn")
 
 [node name="ColorRect" type="ColorRect" parent="Portas/Baixo_esquerda"]
 offset_left = -10.0
@@ -143,3 +151,6 @@ color = Color(1, 1, 0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Portas/Baixo_esquerda"]
 shape = SubResource("RectangleShape2D_r8qs7")
+
+[node name="Respawn" type="Marker2D" parent="."]
+position = Vector2(557, 333)
