@@ -105,7 +105,7 @@ door_id = 3
 
 [node name="Jogador" parent="." instance=ExtResource("1_skhut")]
 position = Vector2(577, 322)
-SPEED = 300.0
+max_speed = 200.0
 
 [node name="Respawn" type="Marker2D" parent="."]
 position = Vector2(577, 322)
@@ -132,7 +132,7 @@ offset_top = 10.0
 offset_right = 184.0
 offset_bottom = 37.0
 grow_horizontal = 2
-max_value = 20.0
+max_value = 60.0
 show_percentage = false
 
 [node name="Message" type="Label" parent="UI/Control"]
@@ -151,14 +151,25 @@ grow_vertical = 2
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Delivers_made" type="Label" parent="UI/Control"]
+layout_mode = 0
+offset_right = 54.0
+offset_bottom = 23.0
+text = "0 / 20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Timer" type="Timer" parent="UI"]
-wait_time = 20.0
+wait_time = 60.0
 one_shot = true
 autostart = true
 
 [node name="Valvula_container" parent="." instance=ExtResource("4_ee6e2")]
 position = Vector2(136, 529)
 
+[connection signal="delivered" from="Jogador" to="UI" method="_on_deviver_made"]
 [connection signal="game_won" from="Jogador" to="UI" method="on_game_won"]
+[connection signal="speed_changed" from="Jogador" to="Valvula_container" method="on_player_speed_change"]
 [connection signal="game_lost" from="UI" to="Jogador" method="on_game_lost"]
 [connection signal="timeout" from="UI/Timer" to="UI" method="_on_timer_timeout"]
+[connection signal="valve_rotated" from="Valvula_container" to="Jogador" method="on_valve_rotated"]

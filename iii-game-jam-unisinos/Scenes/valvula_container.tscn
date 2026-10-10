@@ -1,13 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5aruyah8xm4j"]
+[gd_scene load_steps=6 format=3 uid="uid://b5aruyah8xm4j"]
 
 [ext_resource type="Script" path="res://Scripts/valvula_de_pressao.gd" id="1_plvoq"]
+[ext_resource type="Texture2D" uid="uid://c1sbopt0q5ggs" path="res://Assets/Textures/manometro.png" id="2_2hlp8"]
 [ext_resource type="Texture2D" uid="uid://cyvpm1v4m5dgu" path="res://Assets/Textures/valvula.png" id="2_tr1bv"]
+[ext_resource type="Texture2D" uid="uid://b3vvyrb51824r" path="res://Assets/Textures/ponteiro.png" id="3_21bt6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_21wfx"]
 radius = 50.0
 
 [node name="Valvula_container" type="Node2D"]
 script = ExtResource("1_plvoq")
+
+[node name="Manometro" type="Sprite2D" parent="."]
+position = Vector2(0, -70)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_2hlp8")
+
+[node name="Ponteiro" type="Sprite2D" parent="."]
+position = Vector2(1.13687e-13, -90)
+rotation = 1.40499
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("3_21bt6")
+offset = Vector2(400, -300)
 
 [node name="Valvula_de_pressao" type="Area2D" parent="."]
 collision_layer = 8

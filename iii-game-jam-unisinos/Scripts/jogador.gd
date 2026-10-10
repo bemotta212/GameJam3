@@ -1,14 +1,20 @@
 extends CharacterBody2D
 
 
-@export var SPEED = 150.0
-
 @onready var sprite : Sprite2D = $Sprite2D
 var current_door : int
-@export var delivers : int = 20
+@export var delivers_needed : int = 20
 var delivers_made : int = 0
 
+@export_group("Movement")
+@export var max_speed : float = 150
+@export var min_speed : float = 45
+@export var SPEED : float = 150.0
+
+
 var game_lost: bool = false
+signal delivered(delivers_made : int)
+signal speed_changed(current_speed : float, max_speed : float, min_speed : float)
 signal game_won
 
 
@@ -65,7 +71,8 @@ func change_color(new_color : Color):
 #Teleporta o jogador até o ponto de respawn e muda o objetivo
 func respawn(respawn_point: Marker2D):
 	delivers_made += 1
-	if delivers_made >= delivers:
+	delivered.emit(delivers_made)
+	if delivers_made >= delivers_needed:
 		emit_signal("game_won")
 		return
 	position = respawn_point.position
@@ -74,3 +81,17 @@ func respawn(respawn_point: Marker2D):
 
 func on_game_lost() -> void:
 	game_lost = true
+
+
+func on_valve_rotated(rotation_degrees : float):
+	SPEED += rotation_degrees / 5
+	if SPEED > max_speed:
+		SPEED = max_speed
+	speed_changed.emit(SPEED, max_speed, min_speed)
+
+
+func _on_speed_down_timeout() -> void:
+	SPEED -= 10
+	if SPEED < min_speed:
+		SPEED = min_speed
+	speed_changed.emit(SPEED, max_speed, min_speed)
