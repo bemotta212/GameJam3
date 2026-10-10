@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dyj7c6bvupsv5"]
+[gd_scene load_steps=10 format=3 uid="uid://dyj7c6bvupsv5"]
 
 [ext_resource type="PackedScene" uid="uid://lekbgvvc58t6" path="res://Scenes/jogador.tscn" id="1_skhut"]
 [ext_resource type="PackedScene" uid="uid://chhe4nuh5xtwa" path="res://Scenes/porta.tscn" id="2_cp1n5"]
 [ext_resource type="Script" path="res://Scripts/ui.gd" id="3_1e0is"]
 [ext_resource type="PackedScene" uid="uid://b5aruyah8xm4j" path="res://Scenes/valvula_container.tscn" id="4_ee6e2"]
+[ext_resource type="PackedScene" uid="uid://b2fe7va83dnou" path="res://Scenes/joystick.tscn" id="5_d6bvf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kwles"]
 size = Vector2(91, 616)
@@ -26,10 +27,11 @@ metadata/_edit_vertical_guides_ = [393.0, 761.0]
 collision_mask = 2
 
 [node name="ColorRect" type="ColorRect" parent="Paredes/Parede_esquerda"]
-offset_left = 246.0
+offset_left = -124.0
 offset_top = -6.0
 offset_right = 393.0
 offset_bottom = 669.0
+mouse_filter = 2
 color = Color(0.55046, 0.464676, 0.119736, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/Parede_esquerda"]
@@ -42,8 +44,9 @@ collision_mask = 2
 [node name="ColorRect" type="ColorRect" parent="Paredes/Parede_direita"]
 offset_left = 761.0
 offset_top = -5.0
-offset_right = 1168.0
+offset_right = 1180.0
 offset_bottom = 696.0
+mouse_filter = 2
 color = Color(0.55046, 0.464676, 0.119736, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/Parede_direita"]
@@ -58,6 +61,7 @@ offset_left = 297.0
 offset_top = 582.0
 offset_right = 826.0
 offset_bottom = 665.0
+mouse_filter = 2
 color = Color(0.55046, 0.464676, 0.119736, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/Parede_baixo"]
@@ -72,6 +76,7 @@ offset_left = 329.0
 offset_top = -6.0
 offset_right = 833.0
 offset_bottom = 53.0
+mouse_filter = 2
 color = Color(0.55046, 0.464676, 0.119736, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/Parede_cima"]
@@ -106,6 +111,7 @@ door_id = 3
 [node name="Jogador" parent="." instance=ExtResource("1_skhut")]
 position = Vector2(577, 322)
 max_speed = 200.0
+SPEED = 125.0
 
 [node name="Respawn" type="Marker2D" parent="."]
 position = Vector2(577, 322)
@@ -166,6 +172,9 @@ autostart = true
 
 [node name="Valvula_container" parent="." instance=ExtResource("4_ee6e2")]
 position = Vector2(136, 529)
+
+[node name="Joystick" parent="." instance=ExtResource("5_d6bvf")]
+position = Vector2(1001, 534)
 
 [connection signal="delivered" from="Jogador" to="UI" method="_on_deviver_made"]
 [connection signal="game_won" from="Jogador" to="UI" method="on_game_won"]

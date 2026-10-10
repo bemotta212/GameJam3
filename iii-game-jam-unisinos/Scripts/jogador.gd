@@ -91,7 +91,7 @@ func on_valve_rotated(rotation_degrees : float):
 
 
 func _on_speed_down_timeout() -> void:
-	SPEED -= 10
+	SPEED -= 2
 	if SPEED < min_speed:
 		SPEED = min_speed
 	speed_changed.emit(SPEED, max_speed, min_speed)
